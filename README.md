@@ -1,25 +1,36 @@
-* Instructions/relevant info about solution to parts I,II,III
+# Instructions/relevant info about solution to parts I,II,III
 
-* Any external sources
+# Any external sources
 
-* Questions:
+# Questions:
 
-** 1. Accuracy of part-of-speech tagger:
+## 1. Accuracy of part-of-speech tagger:
 
-** 2. Named Entity Recognizer
+## 2. Named Entity Recognizer
 
-*** For each type:
+### For each type:
 
-**** Precision:
+#### Precision:
 
-**** Recall:
+#### Recall:
 
-**** F-Score:
+#### F-Score:
 
-*** Overall F-Score: (I think this is the same as accuracy)
+### Overall F-Score: (I think this is the same as accuracy)
 
-** 3. What happens if you use Naive Bayes classifier instead of perceptron classifier?
+## 3. What happens if you use Naive Bayes classifier instead of perceptron classifier?
 
-*** report performance metrics
+### report performance metrics
 
-*** Why do you think that is?
+### Why do you think that is?
+
+This is a regular paragraph.
+
+<table>
+    <tr>
+        <td>Foo</td>
+    </tr>
+</table>
+
+This is another regular paragraph.
+
