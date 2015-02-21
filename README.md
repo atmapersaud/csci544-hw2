@@ -23,5 +23,3 @@
 #### report performance metrics
 
 #### Why do you think that is?
-
-
