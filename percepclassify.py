@@ -7,7 +7,7 @@ def classify(w_dict, doc):
     return max(class_scores, key=lambda x: x[1])[0]
     
 def compute_score(w, doc):
-    return w[-1] + sum([w[word] for word in doc])
+    return w[-1] + sum([w[word] for word in doc if word >= 0]) # condition needs testing but seems like it should work
 
 def main():
     parser = argparse.ArgumentParser()
@@ -22,6 +22,7 @@ def main():
         windex = [vdict[word] for word in line.split() if word in vdict]
         pred = classify(weights, windex)
         print(pred)
+        #sys.stdout.flush() (compare output before and after)
 
 if __name__ == '__main__':
     main()
