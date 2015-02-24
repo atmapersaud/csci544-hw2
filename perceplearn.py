@@ -1,5 +1,6 @@
 import json
 import argparse
+import datetime
 import itertools
 
 def main():
@@ -38,6 +39,7 @@ def percep_train(N, data):
     weights = {classname : [0]*(len(vocab)+1) for classname in classes}
 
     for i in range(N):
+        print('starting iteration ' + str(i) + ' at ' + str(datetime.datetime.now()))
         for doc in documents:
             windex = [vdict[word] for word in doc[1:]]
 
