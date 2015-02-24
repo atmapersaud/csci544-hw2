@@ -3,6 +3,14 @@ import json
 import argparse
 import itertools
 
+def generate_examples(sentence):
+    wordtags = [token.split('/') for token in sentence]
+    first = (wordtags[0], wordtags[1])
+    last = (wordtags[-2], wordtags[-1])
+    triples = [(wordtags[i-1], wordtags[i], wordtags[i+1]) for i in range(1,len(wordtags)-1)]
+    # could use triples.insert(0,first) and triples.append(last)
+    # remember to add "prev" "curr" and "next" 
+
 def main():
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument('TRAININGFILE')
