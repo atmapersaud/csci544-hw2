@@ -1,5 +1,3 @@
-## Questions:
-
 ### 1. Accuracy of part-of-speech tagger:
 When testing on the POS development dataset, I obtained an accuracy of 93.2%
 
