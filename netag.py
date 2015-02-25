@@ -1,14 +1,17 @@
+import sys
 import json
+import codecs
 import argparse
 import itertools
 import percepclassify
 
 def generate_examples(sentence):
-    if len(sentence) == 1:
-        return ['prev: curr:' + sentence[0] + ' next:']
-    first = 'prev: curr:' + sentence[0] + ' next:' + sentence[1]
-    last = 'prev:' + sentence[-2] + ' curr:' + sentence[-1] + ' next:'
-    examples = ['prev:' + sentence[i-1] + ' curr:' + sentence[i] + ' next:' + sentence[i+1] for i in range(1,len(sentence)-1)]
+    wordtags = [token.split('/') for token in sentence]
+    if len(wordtags) == 1:
+        return ['prev: curr:' + wordtags[0][0] + ' next: tag:' + wordtags[0][1]]
+    first = 'prev: curr:' + wordtags[0][0] + ' next:' + wordtags[1][0] + ' tag:' + wordtags[0][1]
+    last = 'prev:' + wordtags[-2][0] + ' curr:' + wordtags[-1][0] + ' next: tag:' + wordtags[-1][1]
+    examples = ['prev:' + wordtags[i-1][0] + ' curr:' + wordtags[i][0] + ' next:' + wordtags[i+1][0] + ' tag:' + wordtags[i][1] for i in range(1,len(sentence)-1)]
     examples.insert(0,first)
     examples.append(last)
     return examples
@@ -16,7 +19,7 @@ def generate_examples(sentence):
 def make_prediction(vdict, weights, words):
     windex = [vdict[word] if word in vdict else -1 for word in words]
     pred = percepclassify.classify(weights, windex)
-    return words[1][5:], pred # 
+    return words[1][5:], words[3][4:], pred # word, pos tag, and ner tag
 
 def main():
     parser = argparse.ArgumentParser()
@@ -32,7 +35,7 @@ def main():
     for line in sys.stdin:
         testdata = generate_examples(line.split())
         wordpreds = [make_prediction(vdict, weights, example.split()) for example in testdata]
-        outtokens = ['/'.join(pair) for pair in wordpreds]
+        outtokens = ['/'.join(triple) for triple in wordpreds]
         output = ' '.join(outtokens)
         print(output)
 
