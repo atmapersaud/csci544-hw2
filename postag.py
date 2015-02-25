@@ -5,7 +5,7 @@ import percepclassify
 
 def generate_examples(sentence):
     if len(sentence) == 1:
-        return 'prev: curr:' + sentence[0] + ' next:'
+        return ['prev: curr:' + sentence[0] + ' next:']
     first = 'prev: curr:' + sentence[0] + ' next:' + sentence[1]
     last = 'prev:' + sentence[-2] + ' curr:' + sentence[-1] + ' next:'
     examples = ['prev:' + sentence[i-1] + ' curr:' + sentence[i] + ' next:' + sentence[i+1] for i in range(1,len(sentence)-1)]
@@ -16,7 +16,7 @@ def generate_examples(sentence):
 def make_prediction(vdict, weights, words):
     windex = [vdict[word] if word in vdict else -1 for word in words]
     pred = percepclassify.classify(weights, windex)
-    return words[1], pred
+    return words[1][5:], pred #strip the "curr:" off of the beginning
 
 def main():
     parser = argparse.ArgumentParser()
