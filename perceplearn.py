@@ -38,6 +38,8 @@ def percep_train(N, data):
 
     weights = {classname : [0]*(len(vocab)+1) for classname in classes}
 
+    w_avg = {classname : [0]*(len(vocab)+1) for classname in classes}
+
     for i in range(N):
         print('starting iteration ' + str(i) + ' at ' + str(datetime.datetime.now()))
         for doc in documents:
@@ -47,13 +49,16 @@ def percep_train(N, data):
             y = doc[0]
                         
             if z != y:
-                for i in windex:
-                    weights[z][i] -= 1
-                    weights[y][i] += 1
+                for j in windex:
+                    weights[z][j] -= 1
+                    weights[y][j] += 1
                 # update bias term
                 weights[z][-1] -= 1
                 weights[y][-1] += 1
-    return weights, vocab
+
+        for classname in weights:
+            w_avg[classname] = [w_avg[classname][k] + weights[classname][k] for k in range(len(vocab)+1)]
+    return w_avg, vocab
 
 def classify(w_dict, doc):
     class_scores = [(key,compute_score(w_dict[key], doc)) for key in w_dict]
