@@ -1,8 +1,8 @@
 To run perceplearn.py, do `python3 perceplearn.py <trainfile> <modelfile>` . In it I've implemented an averaged perceptron learning algorithm.
 
-To run percepclassify.py, do `python3 percepclassify.py <modelfile>`. The output is written to the console, so please redirect this to a file if you desire.
+To run percepclassify.py, do `cat <testfile> | python3 percepclassify.py <modelfile>`. The output is written to the console, so please redirect this to a file if you desire.
 
-My postagging and ner code both use perceplearn.py and percepclassify.py in order to perform the underlying learning and classification.
+My postagging and ner code both use perceplearn.py and percepclassify.py as modules in order to perform the underlying learning and classification.
 
 ### 1. Accuracy of part-of-speech tagger:
 When testing on the POS development dataset, I obtained an accuracy of 96.2%
