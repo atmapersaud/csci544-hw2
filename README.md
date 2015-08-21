@@ -5,7 +5,7 @@ To run percepclassify.py, do `cat <testfile> | python3 percepclassify.py <modelf
 My postagging and ner code both use perceplearn.py and percepclassify.py as modules in order to perform the underlying learning and classification.
 
 #### 1. Accuracy of part-of-speech tagger:
-When testing on the POS development dataset, I obtained an accuracy of *96.2%*
+When testing on the POS development dataset, I obtained an accuracy of **96.2%**
 
 #### 2. Named Entity Recognizer
 
